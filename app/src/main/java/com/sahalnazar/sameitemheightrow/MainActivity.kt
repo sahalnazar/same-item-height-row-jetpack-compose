@@ -26,8 +26,9 @@ class MainActivity : ComponentActivity() {
             SameItemHeightRowTheme {
 
                 Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(vertical = 16.dp),
                 ) {
                     ScrollableRow()
                 }
@@ -44,7 +45,10 @@ fun ScrollableRow() {
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         content = {
             repeat(4) {
-                RowItem(modifier = Modifier, textCount = it.plus(1))
+                RowItem(
+                    modifier = Modifier,
+                    textCount = it.plus(1)
+                )
             }
         },
     )
@@ -61,7 +65,7 @@ fun RowItem(modifier: Modifier = Modifier, textCount: Int) {
             verticalArrangement = Arrangement.spacedBy(12.dp),
             modifier = Modifier.padding(16.dp)
         ) {
-            repeat(textCount){
+            repeat(textCount) {
                 Text(
                     text = "item $it",
                     color = Color.White,
