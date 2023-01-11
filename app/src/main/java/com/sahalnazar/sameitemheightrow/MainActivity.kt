@@ -7,10 +7,7 @@ import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -41,12 +38,15 @@ class MainActivity : ComponentActivity() {
 fun ScrollableRow() {
     Row(
         Modifier
-            .padding(horizontal = 16.dp),
+            .padding(horizontal = 16.dp)
+            .horizontalScroll(rememberScrollState())
+            .height(IntrinsicSize.Max),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         content = {
             repeat(4) {
                 RowItem(
-                    modifier = Modifier,
+                    modifier = Modifier
+                        .fillMaxHeight(),
                     textCount = it.plus(1)
                 )
             }
@@ -58,7 +58,7 @@ fun ScrollableRow() {
 fun RowItem(modifier: Modifier = Modifier, textCount: Int) {
     Surface(
         modifier = modifier,
-        color = Color.Gray,
+        color = Color(0xFF469597),
         shape = RoundedCornerShape(12.dp)
     ) {
         Column(
@@ -76,7 +76,10 @@ fun RowItem(modifier: Modifier = Modifier, textCount: Int) {
                 )
             }
 
-            Button(onClick = {
+            Spacer(modifier = Modifier.weight(1f))
+
+            Button(
+                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFddbeaa)), onClick = {
             }) { Text(text = "Button") }
         }
     }
